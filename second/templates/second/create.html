@@ -1,0 +1,8 @@
+<form action="{% url 'create' %}" method="post">
+    {% csrf_token %} <!-- 서버에서 클라이언트에게 html을 응답할 때, 각 폼별로 csrf 토큰을 넣어서 응답해준다. 그래야 해당 폼이 우리 서버로부터 왔음에 대한 유효성 검사를 할 수 있게 된다. -->
+    <table>
+        {{ form.as_table }} <!-- Model Form을 사용할 때 추가함 -->
+    </table>
+{#    {{ form }}#}
+    <button type="submit">제출</button>
+</form>
