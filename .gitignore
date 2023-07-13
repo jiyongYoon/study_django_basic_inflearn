@@ -1,2 +1,7 @@
 *.pyc
 __pycache__
+.idea
+db.sqlite3
+venv
+venv_n
+# venv는 개인이 사용할때는 올려도 상관이 없으려나..
