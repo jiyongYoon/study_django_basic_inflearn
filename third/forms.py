@@ -1,6 +1,35 @@
 from django.forms import ModelForm
-from third.models import Restaurant
+from django import forms
+from third.models import Restaurant, Review
 from django.utils.translation import gettext_lazy as _
+
+REVIEW_POINT_CHOICES = (
+    ('1', 1),
+    ('2', 2),
+    ('3', 3),
+    ('4', 4),
+    ('5', 5)
+)
+
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = ['point', 'comment', 'restaurant']
+        labels = {
+            'point': _('평점'),
+            'comment': _('코멘트'),
+        }
+        help_texts = {
+            'point': _('평점을 입력해주세요.'),
+            'comment': _('코멘트를 입력해주세요.'),
+        }
+        # 필드 속성을 직접 선택하여 render 할 수 있도록 해줌
+        widgets = {
+            'restaurant': forms.HiddenInput(),
+            'point': forms.Select(choices=REVIEW_POINT_CHOICES)
+        }
+
 
 
 class RestaurantForm(ModelForm):
