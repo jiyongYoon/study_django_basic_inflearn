@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'first_django.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'first_django.settings') # 운영 모드에서 사용하는 settings 파일설정. 개발 모드는 manage.py
 
 application = get_wsgi_application()
