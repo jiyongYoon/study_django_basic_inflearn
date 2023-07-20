@@ -1,10 +1,9 @@
 def test_fib(n):
     if n <= 1:
-        # print(1)
         print(fac(n))
     else:
-        # print(test_fib(n - 1) + test_fib(n - 2))
         print(fac(n - 1) + fac(n - 2))
+
 
 def fac(n):
     if n <= 1:
