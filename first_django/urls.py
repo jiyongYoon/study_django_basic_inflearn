@@ -23,3 +23,7 @@ urlpatterns = [
     path('third/', include('third.urls')),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns += [
+    path('django-rq/', include('django_rq.urls'))
+]
