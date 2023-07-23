@@ -20,7 +20,7 @@ from .views import base_views, restaurant_views, review_views
 
 urlpatterns = [
     # base_views.py
-    path('list/', base_views.list, name='list'),
+    # path('list/', base_views.list, name='list'),
 
     # restaurant_views.py
     path('create/', restaurant_views.create, name='restaurant-create'),
@@ -32,4 +32,14 @@ urlpatterns = [
     path('restaurant/<int:restaurant_id>/review/create/', review_views.review_create, name='review-create'),
     path('restaurant/<int:restaurant_id>/review/delete/<int:review_id>', review_views.review_delete, name='review-delete'),
     path('review/list/', review_views.review_list, name='review-list'),
+]
+
+from .views.base_views import BaseView, ListBaseView
+
+urlpatterns += [
+    # CBV
+    # path('list/', BaseView.as_view()),
+
+    # Generic View
+    path('list/', ListBaseView.as_view()),
 ]
