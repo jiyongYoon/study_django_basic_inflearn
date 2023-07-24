@@ -8,6 +8,8 @@ def main():
         worker = Worker([Queue()])
         worker.work()
 
+    print("Worker process has been terminated.")
+
 
 if __name__ == '__main__':
     main()
