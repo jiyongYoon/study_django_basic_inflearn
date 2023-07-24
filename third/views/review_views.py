@@ -25,8 +25,8 @@ def review_delete(request, restaurant_id, review_id):
 
 
 def review_list(request):
-    reviews = Review.objects.all().order_by('-created_at')
-    # reviews = Review.objects.all().select_related().order_by('-created_at') # 연관관계 매핑된 객체까지 함께 불러옴
+    # reviews = Review.objects.all().order_by('-created_at')
+    reviews = Review.objects.all().select_related().order_by('-created_at') # 연관관계 매핑된 객체까지 함께 불러옴
     paginator = Paginator(reviews, 10)
 
     page = request.GET.get('page')
