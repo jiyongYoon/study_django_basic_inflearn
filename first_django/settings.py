@@ -167,19 +167,19 @@ RQ_QUEUES = {
     },
     'with-sentinel': {
         'SENTINELS': [('localhost', 26736), ('localhost', 26737)],
-        'MASTER_NAME': 'redismaster',
+        'MASTER_NAME': 'redis',
         'DB': 0,
         # Redis username/password
-        'USERNAME': 'redis-user',
-        'PASSWORD': 'secret',
+        'USERNAME': '',
+        'PASSWORD': '',
         'SOCKET_TIMEOUT': 0.3,
         'CONNECTION_KWARGS': {  # Eventual additional Redis connection arguments
             'ssl': True
         },
         'SENTINEL_KWARGS': {    # Eventual Sentinel connection arguments
             # If Sentinel also has auth, username/password can be passed here
-            'username': 'sentinel-user',
-            'password': 'secret',
+            'username': '',
+            'password': '',
         },
     },
     'high': {
@@ -194,3 +194,5 @@ RQ_QUEUES = {
 }
 
 RQ_EXCEPTION_HANDLERS = ['path.to.my.handler'] # If you need custom exception handlers
+
+RQ_SHOW_ADMIN_LINK = True

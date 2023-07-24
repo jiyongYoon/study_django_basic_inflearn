@@ -26,7 +26,8 @@ urlpatterns = [
     path('create/', restaurant_views.create, name='restaurant-create'),
     path('update/', restaurant_views.update, name='restaurant-update'),
     path('delete/', restaurant_views.delete, name='restaurant-delete'),
-    path('restaurant/<int:id>/delete', views.delete, name='restaurant-delete'),
+    path('restaurant/<int:id>/delete', restaurant_views.delete, name='restaurant-delete'),
+    path('restaurant/<int:id>/', restaurant_views.detail, name='restaurant-detail'),
 
     # review_views.py
     path('restaurant/<int:restaurant_id>/review/create/', review_views.review_create, name='review-create'),
