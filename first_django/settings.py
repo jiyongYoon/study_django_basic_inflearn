@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_rq',
     'rq_test',
     'rest_framework',
+    'myapp',
 ]
 
 MIDDLEWARE = [

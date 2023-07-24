@@ -23,6 +23,7 @@ urlpatterns = [
     path('third/', include('third.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
+    path('myapp/', include('myapp.urls')),
 ]
 
 urlpatterns += [
