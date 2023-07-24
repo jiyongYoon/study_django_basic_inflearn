@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# 프로젝트가 시작할 때 불러올 앱들을 명시하는 곳 (spring bean들이랑 비슷하구만)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'third',
     'django_rq',
     'rq_test',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -196,3 +197,44 @@ RQ_QUEUES = {
 RQ_EXCEPTION_HANDLERS = ['path.to.my.handler'] # If you need custom exception handlers
 
 RQ_SHOW_ADMIN_LINK = True
+
+# django REST Framework 설정
+REST_FRAMEWORK = {
+
+    # API 뷰에 적용되는 접근 제어 규칙을 결정하는 기본 권한 class
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    # API 뷰에 적용되는 인증 클래스
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
+    # 페이지네이션 클래스와 페이지 크기
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+
+    # API 응답이 어떤 형식으로 직렬화될지 결정
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+
+    # 데이터 필터링에 사용되는 기본 필터 백엔드 지정
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+
+    # 요청 제한에 사용되는 기본 제한 클래스
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day',
+    }
+}

@@ -22,6 +22,7 @@ urlpatterns = [
     path('second/', include('second.urls')),
     path('third/', include('third.urls')),
     path('admin/', admin.site.urls),
+    path('api/', include('rest_framework.urls')),
 ]
 
 urlpatterns += [
