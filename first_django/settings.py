@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'first_django',
     'first',
     'second',
     'third',
@@ -195,7 +196,7 @@ RQ_QUEUES = {
     }
 }
 
-RQ_EXCEPTION_HANDLERS = ['path.to.my.handler'] # If you need custom exception handlers
+# RQ_EXCEPTION_HANDLERS = ['path.to.my.handler'] # If you need custom exception handlers
 
 RQ_SHOW_ADMIN_LINK = True
 

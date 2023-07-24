@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
     path('myapp/', include('myapp.urls')),
+    path('rq/', include('rq_test.urls')),
 ]
 
 urlpatterns += [
