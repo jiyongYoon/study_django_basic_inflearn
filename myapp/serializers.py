@@ -3,6 +3,23 @@ from .models import Book
 
 from datetime import datetime
 
+# ModelSerializer 클래스는 모델 인스턴스와 쿼리셋을 다루는 시리얼라이저를 생성하기 위한 단축키 역할을 함.
+# Django 모델의 필으돠 일치하는 필드를 자동으로 생성함.
+class BookSerializer(serializers.ModelSerializer):
+    # 현재 날짜가 직렬화가 안되고 있음... (23/07/25)
+    # publication_date = serializers.SerializerMethodField()
+
+    # 직렬화에 포함시키고자 하는 모델과 필드정보 추가
+    class Meta:
+        model = Book
+        # fields = ['title', 'author', 'publication_date', 'price']
+        fields = '__all__'
+
+
+    # Django REST framework의 SerializerMethodField 사용 시, 메서드 이름을 {get_<필드명>} 으로 해야 동작함.
+    def get_publication_date(self, obj):
+        return timestamp_to_datetime(obj.publication_date)
+
 
 def timestamp_to_datetime(timestamp):
     # 10자리인 경우 (초 단위)
@@ -13,21 +30,6 @@ def timestamp_to_datetime(timestamp):
         return datetime.fromtimestamp(timestamp / 1000)
     else:
         raise ValueError("Invalid timestamp format.")
-
-
-# ModelSerializer 클래스는 모델 인스턴스와 쿼리셋을 다루는 시리얼라이저를 생성하기 위한 단축키 역할을 함.
-# Django 모델의 필으돠 일치하는 필드를 자동으로 생성함.
-class BookSerializer(serializers.ModelSerializer):
-    publication_date = serializers.SerializerMethodField()
-
-    # 직렬화에 포함시키고자 하는 모델과 필드정보 추가
-    class Meta:
-        model = Book
-        fields = ['title', 'author', 'publication_date', 'price']
-
-
-    def get_publication_date(self, obj):
-        return timestamp_to_datetime(obj.publication_date)
 
     """ 사용
     book = Book.objects.get(pk=1)

@@ -11,30 +11,30 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='restaurant',
-            name='image',
-            field=models.CharField(default=None, max_length=500, null=True),
-        ),
-        migrations.AddField(
-            model_name='restaurant',
-            name='password',
-            field=models.CharField(default=None, max_length=20, null=True),
-        ),
+        # migrations.AddField(
+        #     model_name='restaurant',
+        #     name='image',
+        #     field=models.CharField(default=None, max_length=500, null=True),
+        # ),
+        # migrations.AddField(
+        #     model_name='restaurant',
+        #     name='password',
+        #     field=models.CharField(default=None, max_length=20, null=True),
+        # ),
         migrations.AlterField(
             model_name='restaurant',
             name='id',
             field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
         ),
-        migrations.CreateModel(
-            name='Review',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('point', models.IntegerField()),
-                ('comment', models.CharField(max_length=500)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('restaurant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='third.restaurant')),
-            ],
-        ),
+        # migrations.CreateModel(
+        #     name='Review',
+        #     fields=[
+        #         ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #         ('point', models.IntegerField()),
+        #         ('comment', models.CharField(max_length=500)),
+        #         ('created_at', models.DateTimeField(auto_now_add=True)),
+        #         ('updated_at', models.DateTimeField(auto_now=True)),
+        #         ('restaurant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='third.restaurant')),
+        #     ],
+        # ),
     ]
