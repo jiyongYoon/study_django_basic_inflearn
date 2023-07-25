@@ -224,6 +224,10 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+
     # 데이터 필터링에 사용되는 기본 필터 백엔드 지정
     'DEFAULT_FILTER_BACKENDS': [
         'rest_framework.filters.SearchFilter',
