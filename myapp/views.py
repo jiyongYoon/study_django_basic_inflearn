@@ -92,7 +92,7 @@ size = openapi.Parameter('size', openapi.IN_QUERY, default=5, description="한 �
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     # 사용하려면 api 요청 시 url 예시: GET http://localhost:8000/myapp/books/?ordering=-price&search=번책
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['price'] # price 정렬 활성화
