@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rq_test',
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
     'myapp',
 ]
 

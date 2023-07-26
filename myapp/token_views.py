@@ -6,7 +6,7 @@ from .serializers import UserSerializer
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
-
+# 이렇게 API VIEW를 상속받으면 api 문서에 기본적으로 나타나게 됨.
 class UserLoginView(generics.GenericAPIView):
     serializer_class = UserSerializer
 

@@ -81,17 +81,36 @@ from rest_framework import filters
 
 from .pagination import CustomPagination
 
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+page = openapi.Parameter('page', openapi.IN_QUERY, default=1, description="페이지 번호", type=openapi.TYPE_INTEGER)
+size = openapi.Parameter('size', openapi.IN_QUERY, default=5, description="한 페이지에 표시할 객체 수", type=openapi.TYPE_INTEGER)
+
+
 # CRUD를 포함한 ViewSet
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     # 사용하려면 api 요청 시 url 예시: GET http://localhost:8000/myapp/books/?ordering=-price&search=번책
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     ordering_fields = ['price'] # price 정렬 활성화
     search_fields = ['title'] # title 검색 활성화
     # 커스텀 pagination 클래스 설정
     pagination_class = CustomPagination
+
+    # @swagger_auto_schema(
+    #     operation_description="Get a list of books.",
+    #     responses={200: BookSerializer(many=True)},
+    #     tags=['Books'],  # 해당 API를 'Books' 태그로 그룹화합니다
+    #     manual_parameters=[
+    #         openapi.Parameter('title', openapi.IN_QUERY, description="Search by title", type=openapi.TYPE_STRING),
+    #         openapi.Parameter('ordering', openapi.IN_QUERY, description="Ordering by price", type=openapi.TYPE_STRING),
+    #     ],
+    # )
+    # def list(self, request, *args, **kwargs):
+    #     return super().list(request, *args, **kwargs)
 
     # action 데코레이터 -> 기본 CRUD(Create, Retrieve, Update, Delete) 작업으로 제공되지 않는 사용자 정의 작업 또는 추가적인 엔드포인트를 정의하는 데 사용
     # 기본적으로 DRF의 뷰셋은 list, retrieve, create, update, destroy와 같은 작업을 제공하며, 이는 표준 HTTP 메소드(GET, POST, PUT, DELETE)에 해당
