@@ -77,12 +77,21 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 
+from rest_framework import filters
+
+from .pagination import CustomPagination
 
 # CRUD를 포함한 ViewSet
 class BookViewSet(viewsets.ModelViewSet):
-    queryset = Book.objects.all().order_by('-id')
+    queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
+    # 사용하려면 api 요청 시 url 예시: GET http://localhost:8000/myapp/books/?ordering=-price&search=번책
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    ordering_fields = ['price'] # price 정렬 활성화
+    search_fields = ['title'] # title 검색 활성화
+    # 커스텀 pagination 클래스 설정
+    pagination_class = CustomPagination
 
     # action 데코레이터 -> 기본 CRUD(Create, Retrieve, Update, Delete) 작업으로 제공되지 않는 사용자 정의 작업 또는 추가적인 엔드포인트를 정의하는 데 사용
     # 기본적으로 DRF의 뷰셋은 list, retrieve, create, update, destroy와 같은 작업을 제공하며, 이는 표준 HTTP 메소드(GET, POST, PUT, DELETE)에 해당

@@ -219,10 +219,6 @@ REST_FRAMEWORK = {
         # 커스텀 인증 추가도 가능하며, CustomAuthentication 클래스를 생성하여 `BaseAuthentication` 클래스 상속 후 authenticate() 구현
     ],
 
-    # 페이지네이션 클래스와 페이지 크기
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
-
     # API 응답이 어떤 형식으로 직렬화될지 결정
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
@@ -247,7 +243,11 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/day',
         'user': '1000/day',
-    }
+    },
+
+    # 페이지네이션 클래스와 페이지 크기 (PageNumberPagination, LimitOffsetPagination, CursorPagination 등)
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 3,
 }
 
 # api 호출 시 맨 마지막에 / 안붙여도 되게끔

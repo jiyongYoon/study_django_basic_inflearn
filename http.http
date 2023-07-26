@@ -28,3 +28,6 @@ Content-Type: application/json
 
 ### 책 삭제
 DELETE http://localhost:8000/myapp/books/8/
+
+### 리스트 정렬 및 필터
+GET http://localhost:8000/myapp/books/?ordering=-price&search=번책
