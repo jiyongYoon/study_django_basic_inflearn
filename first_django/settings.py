@@ -205,7 +205,9 @@ REST_FRAMEWORK = {
 
     # API 뷰에 적용되는 접근 제어 규칙을 결정하는 기본 권한 class
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 인증된 요청에 한해서 뷰 호출 허용 ({"detail": "자격 인증데이터(authentication credentials)가 제공되지 않았습니다."})
+        # SpringSecurity 느낌쓰
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
 
     # API 뷰에 적용되는 인증 클래스
@@ -221,7 +223,7 @@ REST_FRAMEWORK = {
     # API 응답이 어떤 형식으로 직렬화될지 결정
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer', # 직렬화기 View를 사용할지 말지인듯
     ],
 
     'DEFAULT_PARSER_CLASSES': [
@@ -244,3 +246,7 @@ REST_FRAMEWORK = {
         'user': '1000/day',
     }
 }
+
+# api 호출 시 맨 마지막에 / 안붙여도 되게끔
+# error log : RuntimeError: You called this URL via PUT, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining PUT data. Change your form to point to localhost:8000/myapp/books/7/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+APPEND_SLASH = False

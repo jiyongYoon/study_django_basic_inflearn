@@ -1,0 +1,30 @@
+### 리스트
+GET http://localhost:8000/myapp/books/
+
+### 단건
+GET http://localhost:8000/myapp/books/8/
+
+### 책 등록
+POST http://localhost:8000/myapp/books/
+Content-Type: application/json
+
+{
+  "title": "이펙티브 자바",
+  "author": "F. Scott Fitzgerald",
+  "publication_date": "2023-01-01",
+  "price": "19.99"
+}
+
+### 책 수정
+PUT http://localhost:8000/myapp/books/8/
+Content-Type: application/json
+
+{
+  "title": "이펙티브 자바2",
+  "author": "작가모름",
+  "publication_date": "2023-01-01",
+  "price": "8500"
+}
+
+### 책 삭제
+DELETE http://localhost:8000/myapp/books/8/
