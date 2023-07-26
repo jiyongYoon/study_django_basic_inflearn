@@ -75,12 +75,14 @@ from rest_framework import viewsets
 #         return Response({'status': 'book marked as read'})
 
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 
 
 # CRUD를 포함한 ViewSet
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all().order_by('-id')
     serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated]
 
     # action 데코레이터 -> 기본 CRUD(Create, Retrieve, Update, Delete) 작업으로 제공되지 않는 사용자 정의 작업 또는 추가적인 엔드포인트를 정의하는 데 사용
     # 기본적으로 DRF의 뷰셋은 list, retrieve, create, update, destroy와 같은 작업을 제공하며, 이는 표준 HTTP 메소드(GET, POST, PUT, DELETE)에 해당

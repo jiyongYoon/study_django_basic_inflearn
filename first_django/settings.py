@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_rq',
     'rq_test',
     'rest_framework',
+    'rest_framework_simplejwt',
     'myapp',
 ]
 
@@ -210,10 +211,12 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',
     ],
 
-    # API 뷰에 적용되는 인증 클래스
+    # API 뷰에 적용되는 인증 클래스 (인증 백엔드 구성)
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 커스텀 인증 추가도 가능하며, CustomAuthentication 클래스를 생성하여 `BaseAuthentication` 클래스 상속 후 authenticate() 구현
     ],
 
     # 페이지네이션 클래스와 페이지 크기

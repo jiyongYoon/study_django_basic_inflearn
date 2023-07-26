@@ -30,3 +30,12 @@ urlpatterns = [
 urlpatterns += [
     path('django-rq/', include('django_rq.urls'))
 ]
+
+
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+# jwt 토큰 생성 endpoint
+urlpatterns += [
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
