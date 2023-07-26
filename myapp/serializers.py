@@ -4,7 +4,7 @@ from .models import Book
 from datetime import datetime
 
 # ModelSerializer 클래스는 모델 인스턴스와 쿼리셋을 다루는 시리얼라이저를 생성하기 위한 단축키 역할을 함.
-# Django 모델의 필으돠 일치하는 필드를 자동으로 생성함.
+# Django 모델의 필드와 일치하는 필드를 자동으로 생성함.
 class BookSerializer(serializers.ModelSerializer):
     # 현재 날짜가 직렬화가 안되고 있음... (23/07/25)
     # publication_date = serializers.SerializerMethodField()
